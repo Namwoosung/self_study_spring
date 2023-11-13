@@ -1,0 +1,31 @@
+//우리가 선택한 설정들
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.17'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'hello'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '11'
+}
+//dependency에서 선택한 라이브러리들을 mavenCentral이라는 사이트에서 가져와서 설치하는 것
+repositories {
+	mavenCentral()
+}
+//우리가 선택한 dependency들
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('bootBuildImage') {
+	builder = 'paketobuildpacks/builder-jammy-base:latest'
+}
+
+test {
+	useJUnitPlatform()
+}
