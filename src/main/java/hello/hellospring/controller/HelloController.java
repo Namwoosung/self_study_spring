@@ -1,3 +1,4 @@
+//섹션 2 강의를 위한 폴더
 package hello.hellospring.controller;
 
 import org.springframework.stereotype.Controller;
@@ -69,7 +70,7 @@ public class HelloController {
     
     //class 내부에 class 선언
     //Hello class는 name이라는 변수를 private으로 갖고 set과 get을 지원
-    //Hello를 return하게 되면 ket:name value:{set 설정 값} 의 쌍으로 전달 됨
+    //Hello를 return하게 되면 key:name value:{set 설정 값} 의 쌍으로 전달 됨
     static class Hello{
         private  String name;
 
