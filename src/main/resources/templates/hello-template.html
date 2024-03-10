@@ -1,8 +1,0 @@
-<!--th(타임리프 템플릿 엔진)을 써줘야 함-->
-<html xmlns:th="http://www.thymeleaf.org">
-<body>
-<!--뒤에 hello! empty는 사실상 없어도 됨, thymeleaf는 파일의 abosolute path를 url로 입력하면
-file 정보를 출력해주는데 흰색 글씨가 출력되는 것
-실제 서버를 돌리면 흰색 글씨가 초록글씨로 치환되는 것-->
-<p th:text="'hello ' + ${name}">hello! empty</p>
-</body>
