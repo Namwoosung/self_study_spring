@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"> <!--타임리프 사용 시 이 구문 추가를 해줘야 사용 가능-->
+<!--타임리프를 사용하게 되면 기존에 있던 것은 정적으로 남음(서버를 시작하지 않고 열면 정적인 html이 출력)
+그러나 서버를 시작하게 되면 타임리프 구문이 있는 곳은 동적으로 변환되어 html이 작성이 됨-->
+<head>
+    <meta charset="utf-8">
+    <!--css경로를 타임리프로 다음과 같이 대체, 기존은 상대경로 이기에 파일 위치가 달라지면 css 인식을 못할 수 있음 -> 타임리프를 사용해 절대 경로로 대체-->
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>상품 목록</h2>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <!--버튼을 눌렀을 경우 버튼을 눌렀을 때 이동할 URL 경로 설정-->
+            <button class="btn btn-primary float-end"
+                    onclick="location.href='addForm.html'"
+                    th:onclick="|location.href='@{/basic/items/add}'|"
+                    type="button">상품 등록</button>
+        </div>
+    </div>
+
+    <hr class="my-4">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>수량</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--타임리프를 통해 루프를 돌려서 item을 출력-->
+            <!--순서대로 item.id, item.itemName, item.price. item.quantity를 출력할 것-->
+            <!--item id나 item Name을 누르면 해당 item의 상세 조회 page로 이동할 수 있도록 href 링크를 설정-->
+            <tr th:each="item : ${items}">
+                <td><a href="item.html" th:href="@{/basic/items/{itemId}(itemId=${item.id})}" th:text="${item.id}">회원id</a></td>
+                <td><a href="item.html" th:href="@{|/basic/items/${item.id}|}" th:text="${item.itemName}">상품명</a></td>
+                <td th:text="${item.price}">10000</td>
+                <td th:text="${item.quantity}">10</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div> <!-- /container -->
+
+</body>
+</html>
