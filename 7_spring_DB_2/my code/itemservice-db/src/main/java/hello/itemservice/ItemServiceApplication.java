@@ -16,7 +16,7 @@ import javax.xml.crypto.Data;
 @Slf4j
 //@Import(MemoryConfig.class)
 //@Import(JdbcTemplateV3Config.class)
-@Import(MyBatisConfig.class)
+@Import(JpaConfig.class)
 @SpringBootApplication(scanBasePackages = "hello.itemservice.web")
 public class ItemServiceApplication {
 
