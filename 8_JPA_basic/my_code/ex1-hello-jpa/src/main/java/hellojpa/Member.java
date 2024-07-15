@@ -5,19 +5,20 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@SequenceGenerator(name = "member-seq-generator", sequenceName = "member_seq")
 public class Member {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member-seq-generator")
+    @Id @GeneratedValue
+    @Column(name = "Member_ID")
     private Long id;
-    @Column(name = "name", nullable = false)
+    @Column(name = "USERNAME")
     private String username;
 
+//    @Column(name = "TEAM_ID")
+//    private Long teamId;
 
-    public Member() {
-    }
-
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
     public Long getId() {
         return id;
@@ -33,5 +34,32 @@ public class Member {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+//    public Long getTeamId() {
+//        return teamId;
+//    }
+//
+//    public void setTeamId(Long teamId) {
+//        this.teamId = teamId;
+//    }
+
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void changeTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", team=" + team +
+                '}';
     }
 }
