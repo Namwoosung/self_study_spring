@@ -1,6 +1,7 @@
 package hellojpa;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ManyToAny;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -14,11 +15,9 @@ public class Member {
     @Column(name = "USERNAME")
     private String username;
 
-    @OneToOne
-    @JoinColumn(name = "LOCKER_ID")
-    private Locker locker;
-
-
+    @ManyToOne(fetch = FetchType.EAGER) //find를 해도 Team 객체는 프록시 객체가 반한됨
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
 
     public Long getId() {
@@ -35,5 +34,13 @@ public class Member {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

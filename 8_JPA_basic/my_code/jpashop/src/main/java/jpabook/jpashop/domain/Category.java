@@ -13,7 +13,7 @@ public class Category extends BaseEntity{
 
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Category parent; //카테고리는 상위 카테고리 아래 하위 카테고리 존재 가능
 
