@@ -9,6 +9,8 @@ import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderItem;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -19,10 +21,14 @@ public class Main {
         tx.begin();
 
         try{
-            Book book = new Book();
-            book.setName("JPA");
-            book.setAuthor("김영한");
-            em.persist(book);
+            List<Member> result = em.createQuery(
+                    "selcet m From Member m where m.username like '%kim%'",
+                    Member.class
+            ).getResultList();
+
+            for (Member member : result) {
+                System.out.println("member = " + member);
+            }
 
             tx.commit();
         } catch (Exception e){
