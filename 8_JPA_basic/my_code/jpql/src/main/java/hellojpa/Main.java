@@ -56,6 +56,11 @@ public class Main {
                     .executeUpdate();
             System.out.println("result = " + result);
 
+            em.clear();
+
+            Member findMember = em.find(Member.class, member1.getId());
+            System.out.println("findMember.getAge() = " + findMember.getAge());
+
 
             tx.commit();
         } catch (Exception e){
